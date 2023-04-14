@@ -59,10 +59,10 @@ router.post("/verifyOTP", async (req, res) => {
     }
 });
 
+// email verify with otp
 router.get("/mail/", async (req, res) => {
     try {
         console.log(req.query.email, "ppppppppppppp");
-
 
         if (req.query.email == undefined || req.query.otp == undefined) {
             res.json({ "message": "bad request" })
@@ -77,7 +77,6 @@ router.get("/mail/", async (req, res) => {
         } else {
             return res.status(409).json({ message: "INVALID OTP" })
         }
-
 
     } catch (err) {
         res.status(404).json({ message: "email is wrong", err });
