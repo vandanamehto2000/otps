@@ -78,6 +78,7 @@ router.get("/mail/", async (req, res) => {
         } else {
             return res.status(409).json({ message: "INVALID OTP" })
         }
+        
 
     } catch (err) {
         res.status(404).json({ message: "email is wrong", err });
