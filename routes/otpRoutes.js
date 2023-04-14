@@ -59,7 +59,6 @@ router.post("/verifyOTP", async (req, res) => {
     }
 });
 
-
 router.get("/mail/", async (req, res) => {
     try {
         console.log(req.query.email, "ppppppppppppp");
@@ -84,7 +83,6 @@ router.get("/mail/", async (req, res) => {
         res.status(404).json({ message: "email is wrong", err });
     }
 })
-
 
 
 module.exports = router;
