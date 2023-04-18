@@ -1,5 +1,6 @@
 const OTP = require("../models/otpModel");
 const router = require("express").Router();
+const CryptoJS = require("crypto-js")
 
 // register
 router.post("/register", async (req, res) => {
@@ -81,12 +82,46 @@ router.get("/mail/", async (req, res) => {
     } catch (err) {
         res.status(404).json({ message: "email is wrong", err });
     }
+});
+
+
+router.post("/getEncrypted", async (req, res) => {
+    try {
+        console.log(req)
+        const key = "1234tgbnm876trf";
+        const plainText = "qwertyuiop";
+
+        const encrypted = await CryptoJS.AES.encrypt(plainText, key).toString()
+        let encryptedData_ = encrypted;
+        // console.log(encrypted, "Encrypted Text");
+        res.status(200).json({ encrypted: encryptedData_ })
+
+    } catch (err) {
+        res.status(404).json({ message: err });
+    }
 })
 
 
+router.post("/getDecrypted", async (req, res) => {
+
+    try {
+        const key = "1234tgbnm876trf"
+        const plainText = 'qwertyuiop'
+        const decrypted = CryptoJS.AES.decrypt(plainText, key)
+        let data = decrypted.toString(CryptoJS.enc.Utf8)
+            // console.log(data);
+            .then((result) => {
+                res.send(result);
+            }).catch((err) => {
+                res.status(404).json({ message: err });
+
+            })
+    } catch (err) {
+        res.status(404).json({ message: err });
+    }
+})
+
 module.exports = router;
-
-
 
 
 

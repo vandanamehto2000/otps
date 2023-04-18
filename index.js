@@ -10,7 +10,6 @@ db();
 app.use("/", require("./routes/otpRoutes"));
 
 
-
 const PORT = 3000;
 
 app.listen(PORT, () => {
