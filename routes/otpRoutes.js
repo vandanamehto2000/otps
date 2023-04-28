@@ -9,6 +9,10 @@ const md5 = require("md5");
 // register
 router.post("/register", async (req, res) => {
     // let { phoneNumber, email } = req.body;
+    const { name, email, phoneNumber } = req.body;
+    if (!(name && email && phoneNumber)) {
+        return res.status(400).json("All input is required");
+    }
     let result = await OTP.find({ phoneNumber: req.body.phoneNumber });
     const result2 = await OTP.find({ email: req.body.email });
     try {
