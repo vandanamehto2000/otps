@@ -8,7 +8,6 @@ const md5 = require("md5");
 
 // register
 router.post("/register", async (req, res) => {
-    // let { phoneNumber, email } = req.body;
     const { name, email, phoneNumber } = req.body;
     if (!(name && email && phoneNumber)) {
         return res.status(400).json("All input is required");
